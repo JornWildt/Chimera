@@ -1,0 +1,8 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="Xyperico\Xyperico.Agres\Xyperico.Agres.Tests\bin\Debug\Xyperico.Agres.Tests.dll" />
+    <assembly path="Chimera.Authentication.Core.Tests\bin\Debug\Chimera.Authentication.Core.Tests.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto" />
+</NUnitProject>
