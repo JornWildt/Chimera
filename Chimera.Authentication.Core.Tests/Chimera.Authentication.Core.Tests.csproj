@@ -46,16 +46,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PasswordPolicyTests.cs" />
+    <Compile Include="UserAccounts\PasswordPolicyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetupFixture.cs" />
     <Compile Include="TestHelper.cs" />
-    <Compile Include="UserNameValidatorTests.cs" />
+    <Compile Include="UserAccounts\UserAccountTests.cs" />
+    <Compile Include="UserAccounts\UserNameValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Chimera.Authentication.Contract\Chimera.Authentication.Contract.csproj">
+      <Project>{D3FB315E-956C-42A2-92F1-E2E381D2B565}</Project>
+      <Name>Chimera.Authentication.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Chimera.Authentication.Core\Chimera.Authentication.Core.csproj">
       <Project>{883403DD-D5FF-46E1-8292-01B7002DF8E5}</Project>
       <Name>Chimera.Authentication.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Chimera.Authentication.Service\Chimera.Authentication.Service.csproj">
+      <Project>{FFD7CBF6-16D8-40AE-8091-6108BD82C4E0}</Project>
+      <Name>Chimera.Authentication.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xyperico\Xyperico.Agres\Xyperico.Agres.JsonNet\Xyperico.Agres.JsonNet.csproj">
+      <Project>{0A736229-1204-4F4B-87EC-6D44E811D75B}</Project>
+      <Name>Xyperico.Agres.JsonNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xyperico\Xyperico.Agres\Xyperico.Agres.ProtoBuf\Xyperico.Agres.ProtoBuf.csproj">
+      <Project>{D150EABC-E736-4BD1-9FC1-CB6F607E000E}</Project>
+      <Name>Xyperico.Agres.ProtoBuf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xyperico\Xyperico.Agres\Xyperico.Agres.SQLite\Xyperico.Agres.SQLite.csproj">
+      <Project>{563C8C4C-A0F7-4AEE-8D5A-93D7CCA39D83}</Project>
+      <Name>Xyperico.Agres.SQLite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xyperico\Xyperico.Agres\Xyperico.Agres\Xyperico.Agres.csproj">
+      <Project>{F7D3C1F6-7F4E-4DF5-9226-5AEC4180C74F}</Project>
+      <Name>Xyperico.Agres</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xyperico\Xyperico.Base\Xyperico.Base.Testing\Xyperico.Base.Testing.csproj">
       <Project>{0A6B133C-2DAD-49D9-9686-AF4E2021ACA7}</Project>
@@ -66,9 +91,7 @@
       <Name>Xyperico.Base</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserAccounts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

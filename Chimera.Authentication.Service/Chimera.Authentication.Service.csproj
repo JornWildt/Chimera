@@ -50,6 +50,10 @@
     <Compile Include="UserAccounts\UserAccountApplicationService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Chimera.Authentication.Contract\Chimera.Authentication.Contract.csproj">
+      <Project>{D3FB315E-956C-42A2-92F1-E2E381D2B565}</Project>
+      <Name>Chimera.Authentication.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Chimera.Authentication.Core\Chimera.Authentication.Core.csproj">
       <Project>{883403DD-D5FF-46E1-8292-01B7002DF8E5}</Project>
       <Name>Chimera.Authentication.Core</Name>

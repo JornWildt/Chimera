@@ -1,39 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Chimera.Authentication.Core.UserAccounts.Commands;
+using Chimera.Authentication.Contract.UserAccounts;
+using Chimera.Authentication.Contract.UserAccounts.Commands;
+using Chimera.Authentication.Contract.UserAccounts.Events;
 using CuttingEdge.Conditions;
 using Xyperico.Agres;
 using Xyperico.Agres.EventStore;
-using Xyperico.Base.CommonDomainTypes;
 using Xyperico.Base.Crypto;
-using Chimera.Authentication.Core.UserAccounts.Events;
 
 
 namespace Chimera.Authentication.Core.UserAccounts
 {
-  public class UserAccount : AbstractAggregate<UserAccountId>
+  public class UserAccount : AbstractAggregate<UserAccountId, UserAccountState>
   {
-    public class UserAccountData
-    {
-      public string UserName { get; protected set; }
-
-      public EMail EMail { get; protected set; }
-
-      public byte[] PasswordHash { get; protected set; }
-
-      public byte[] PasswordSalt { get; protected set; }
-
-      public string PasswordHashAlgorithm { get; protected set; }
-    }
-
-
-    public UserAccountData Data { get; protected set; }
-
-
     public UserAccount(IEnumerable<IEvent> events)
       : base(events)
     {
-      Data = new UserAccountData();
     }
 
     
@@ -43,9 +25,12 @@ namespace Chimera.Authentication.Core.UserAccounts
     {
       Condition.Requires(cmd, "cmd").IsNotNull();
       Condition.Requires(userNameValidator, "userNameValidator").IsNotNull();
+      Condition.Requires(passwordPolicy, "passwordPolicy").IsNotNull();
 
       if (!userNameValidator.IsValidUserName(cmd.UserName))
         throw new InvalidUserNameException(cmd.UserName);
+
+      Publish(new UserAccountCreatedEvent(cmd.Id, cmd.UserName, cmd.EMail));
 
       if (cmd.Password != null)
         SetPassword(cmd.Password, passwordPolicy);
@@ -71,10 +56,10 @@ namespace Chimera.Authentication.Core.UserAccounts
 
     private bool PasswordMatches(string password)
     {
-      if (Data.PasswordSalt == null || Data.PasswordHash == null)
+      if (State.PasswordSalt == null || State.PasswordHash == null)
         return false;
-      byte[] hash = PasswordHasher.GeneratePasswordHash(password, Data.PasswordSalt, Data.PasswordHashAlgorithm);
-      return hash.SequenceEqual(Data.PasswordHash);
+      byte[] hash = PasswordHasher.GeneratePasswordHash(password, State.PasswordSalt, State.PasswordHashAlgorithm);
+      return hash.SequenceEqual(State.PasswordHash);
     }
 
 
@@ -85,13 +70,11 @@ namespace Chimera.Authentication.Core.UserAccounts
         if (!passwordPolicy.IsValid(newPassword))
           throw new InvalidPasswordException(passwordPolicy.GetDescription(_.Auth.Password));
 
-        string passwordHashAlgorithm = Configuration.Settings.PasswordHashAlgorithm;
+        string algorithm = Configuration.Settings.PasswordHashAlgorithm;
         byte[] salt, hash;
-        GeneratePasswordHash(newPassword, passwordHashAlgorithm, out salt, out hash);
-        byte[] passwordSalt = salt;
-        byte[] passwordHash = hash;
+        GeneratePasswordHash(newPassword, algorithm, out salt, out hash);
 
-        Publish(new PasswordChangedEvent(Id, passwordSalt, passwordHash, passwordHashAlgorithm));
+        Publish(new PasswordChangedEvent(Id, salt, hash, algorithm));
       }
       else
       {
@@ -99,10 +82,6 @@ namespace Chimera.Authentication.Core.UserAccounts
       }
     }
 
-    #endregion
-
-
-    #region Restore state
     #endregion
   }
 }

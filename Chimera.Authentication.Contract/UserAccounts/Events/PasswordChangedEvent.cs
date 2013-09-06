@@ -5,7 +5,7 @@ using Xyperico.Base.CommonDomainTypes;
 using System;
 
 
-namespace Chimera.Authentication.Core.UserAccounts.Events
+namespace Chimera.Authentication.Contract.UserAccounts.Events
 {
   [DataContract]
   public class PasswordChangedEvent : IEvent
@@ -21,6 +21,11 @@ namespace Chimera.Authentication.Core.UserAccounts.Events
 
     [DataMember(Order = 4)]
     public string PasswordHashAlgorithm { get; private set; }
+
+
+    public PasswordChangedEvent()
+    {
+    }
 
 
     public PasswordChangedEvent(UserAccountId id, byte[] passwordSalt, byte[] passwordHash, string passwordHashingAlgorithm)

@@ -3,13 +3,18 @@ using System.Runtime.Serialization;
 using Xyperico.Agres;
 
 
-namespace Chimera.Authentication.Core.UserAccounts
+namespace Chimera.Authentication.Contract.UserAccounts
 {
   [DataContract]
   public class UserAccountId : Identity<Guid>
   {
     public UserAccountId()
-      : base(Guid.NewGuid())
+    {
+    }
+
+
+    public UserAccountId(Guid id)
+      : base(id)
     {
     }
 

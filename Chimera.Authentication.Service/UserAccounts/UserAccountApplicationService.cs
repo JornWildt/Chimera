@@ -1,5 +1,6 @@
-﻿using Chimera.Authentication.Core.UserAccounts;
-using Chimera.Authentication.Core.UserAccounts.Commands;
+﻿using Chimera.Authentication.Contract.UserAccounts;
+using Chimera.Authentication.Contract.UserAccounts.Commands;
+using Chimera.Authentication.Core.UserAccounts;
 using CuttingEdge.Conditions;
 using Xyperico.Agres.EventStore;
 using Xyperico.Agres.MessageBus;
@@ -7,7 +8,7 @@ using Xyperico.Agres.MessageBus;
 
 namespace Chimera.Authentication.Service.UserAccounts
 {
-  public class UserAccountApplicationService : GenericApplicationService<UserAccount, UserAccountId>,
+  public class UserAccountApplicationService : GenericApplicationService<UserAccount, UserAccountState, UserAccountId>,
     IHandleMessage<CreateUserAccountCommand>
   {
     #region Dependencies

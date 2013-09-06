@@ -2,7 +2,7 @@
 using Chimera.Authentication.Core.UserAccounts;
 
 
-namespace Chimera.Authentication.Core.Tests
+namespace Chimera.Authentication.Core.Tests.UserAccounts
 {
   [TestFixture]
   public class UserNameValidatorTests : TestHelper

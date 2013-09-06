@@ -4,7 +4,7 @@ using Xyperico.Agres;
 using Xyperico.Base.CommonDomainTypes;
 
 
-namespace Chimera.Authentication.Core.UserAccounts.Events
+namespace Chimera.Authentication.Contract.UserAccounts.Events
 {
   [DataContract]
   public class UserAccountCreatedEvent : IEvent
@@ -17,6 +17,11 @@ namespace Chimera.Authentication.Core.UserAccounts.Events
 
     [DataMember(Order = 3)]
     public EMail EMail { get; private set; }
+
+
+    public UserAccountCreatedEvent()
+    {
+    }
 
 
     public UserAccountCreatedEvent(UserAccountId id, string userName, EMail email)
