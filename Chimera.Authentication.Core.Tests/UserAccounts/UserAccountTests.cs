@@ -15,9 +15,28 @@ using Xyperico.Agres.JsonNet;
 namespace Chimera.Authentication.Core.Tests.UserAccounts
 {
   [TestFixture]
-  public class UserAccountTests : TestHelper
+  public class UserAccountTests_Json : UserAccountTests<JsonNetSerializer>
+  {
+  }
+
+
+  [TestFixture]
+  public class UserAccountTests_ProtoBuf : UserAccountTests<ProtoBufSerializer>
+  {
+  }
+
+
+  [TestFixture]
+  public class UserAccountTests_DataContract : UserAccountTests<DataContractSerializer>
+  {
+  }
+
+
+  public abstract class UserAccountTests<TSerializer> : TestHelper
+    where TSerializer : ISerializer, new()
   {
     IAppendOnlyStore AppendOnlyStore;
+    ISerializer Serializer;
     IEventStore EventStore;
     GenericRepository<UserAccount, UserAccountState, UserAccountId> Repository;
     UserAccountApplicationService UserAccountApplicationService;
@@ -27,11 +46,26 @@ namespace Chimera.Authentication.Core.Tests.UserAccounts
     {
       base.SetUp();
       AppendOnlyStore = new SQLiteAppendOnlyStore(SetupFixture.SqlConnectionString, false);
-      //ISerializer serializer = new ProtoBufSerializer();
-      ISerializer serializer = new JsonNetSerializer();
-      EventStore = new EventStoreDB(AppendOnlyStore, serializer);
+      Serializer = new TSerializer();
+      EventStore = new EventStoreDB(AppendOnlyStore, Serializer);
       Repository = new GenericRepository<UserAccount, UserAccountState, UserAccountId>(EventStore);
       UserAccountApplicationService = new UserAccountApplicationService(EventStore, UserNameValidator);
+    }
+
+
+    [Test]
+    public void CanSerializeUserAccountId()
+    {
+      // Arrange
+      UserAccountId id1 = new UserAccountId(Guid.NewGuid());
+
+      // Act
+      byte[] data = Serializer.Serialize(id1);
+      UserAccountId id2 = (UserAccountId)Serializer.Deserialize(data);
+
+      // Assert
+      Assert.IsNotNull(id2);
+      Assert.AreEqual(id1, id2);
     }
 
 

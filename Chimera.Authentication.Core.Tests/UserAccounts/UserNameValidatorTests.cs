@@ -69,7 +69,7 @@ namespace Chimera.Authentication.Core.Tests.UserAccounts
     [Test]
     public void ItOnlyLoadsTheInvalidUserNameFileOnce()
     {
-      Assert.AreEqual(1, FilebasedUserNameValidator.FileReloadTimes);
+      Assert.AreEqual(1, ((FilebasedUserNameValidator)UserNameValidator).FileReloadTimes);
     }
 
 

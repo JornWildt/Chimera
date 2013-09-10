@@ -15,7 +15,7 @@ namespace Chimera.Authentication.Core.UserAccounts
     private DateTime? InvalidUserNamesLastRead;
 
     // Primarily used for internal testing
-    public static int FileReloadTimes { get; set; }
+    public int FileReloadTimes { get; set; }
 
 
     static FilebasedUserNameValidator()
