@@ -1,42 +1,20 @@
-﻿using System.Configuration;
+﻿using System.Xml.Serialization;
 
 
 namespace Chimera.Authentication.Core.UserAccounts.ConfigurationElements
 {
-  public class UserNamePolicyElement : ConfigurationElement
+  public class UserNamePolicyElement
   {
-    public override bool IsReadOnly() { return false; }
+    [XmlAttribute]
+    public string ValidUserNamePattern { get; set; }
 
+    [XmlAttribute]
+    public string InvalidUserNameFile { get; set; }
 
-    [ConfigurationProperty("ValidUserNamePattern", IsRequired=false)]
-    public string ValidUserNamePattern
-    {
-      get { return (string)this["ValidUserNamePattern"]; }
-      set { this["ValidUserNamePattern"] = value; }
-    }
+    [XmlAttribute]
+    public int MinLength { get; set; }
 
-
-    [ConfigurationProperty("InvalidUserNameFile", IsRequired = false)]
-    public string InvalidUserNameFile
-    {
-      get { return (string)this["InvalidUserNameFile"]; }
-      set { this["InvalidUserNameFile"] = value; }
-    }
-
-
-    [ConfigurationProperty("MinLength")]
-    public int MinLength
-    {
-      get { return (int)this["MinLength"]; }
-      set { this["MinLength"] = value; }
-    }
-
-
-    [ConfigurationProperty("MaxLength")]
-    public int MaxLength
-    {
-      get { return (int)this["MaxLength"]; }
-      set { this["MaxLength"] = value; }
-    }
+    [XmlAttribute]
+    public int MaxLength { get; set; }
   }
 }

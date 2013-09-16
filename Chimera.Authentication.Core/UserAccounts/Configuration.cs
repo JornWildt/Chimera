@@ -1,36 +1,26 @@
 ﻿using System.Configuration;
 using Chimera.Authentication.Core.UserAccounts.ConfigurationElements;
 using Xyperico.Base;
+using System.Xml.Serialization;
 
 
 namespace Chimera.Authentication.Core.UserAccounts
 {
-  public class Configuration : ConfigurationSettingsBase<Configuration>
+  [Module("UserAccounts")]
+  [XmlRoot("Configuration")]
+  public class XmlConfiguration : XmlFileConfiguration<XmlConfiguration>
   {
-    public override bool IsReadOnly() { return false; }
+    [XmlAttribute]
+    public string PasswordHashAlgorithm { get; set; }
 
+    public PasswordPolicyElement PasswordPolicy { get; set; }
 
-    [ConfigurationProperty("PasswordHashAlgorithm")]
-    public string PasswordHashAlgorithm
+    public UserNamePolicyElement UserNamePolicy { get; set; }
+
+    public XmlConfiguration()
     {
-      get { return (string)this["PasswordHashAlgorithm"]; }
-      set { this["PasswordHashAlgorithm"] = value; }
-    }
-
-
-    [ConfigurationProperty("UserNamePolicy")]
-    public UserNamePolicyElement UserNamePolicy
-    {
-      get { return (UserNamePolicyElement)this["UserNamePolicy"]; }
-      set { this["UserNamePolicy"] = value; }
-    }
-
-
-    [ConfigurationProperty("PasswordPolicy")]
-    public PasswordPolicyElement PasswordPolicy
-    {
-      get { return (PasswordPolicyElement)this["PasswordPolicy"]; }
-      set { this["PasswordPolicy"] = value; }
+      PasswordPolicy = new PasswordPolicyElement();
+      UserNamePolicy = new UserNamePolicyElement();
     }
 
 

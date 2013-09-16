@@ -29,7 +29,7 @@ namespace Chimera.Authentication.Service.UserAccounts
 
     public void Handle(CreateUserAccountCommand cmd)
     {
-      Update(cmd, user => user.Create(cmd, UserNameValidator, Configuration.Settings.GetPasswordPolicy()));
+      Update(cmd, user => user.Create(cmd, UserNameValidator, XmlConfiguration.Settings.GetPasswordPolicy()));
     }
   }
 }

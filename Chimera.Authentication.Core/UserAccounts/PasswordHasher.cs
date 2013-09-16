@@ -11,7 +11,7 @@ namespace Chimera.Authentication.Core.UserAccounts
     {
       Condition.Requires(password, "password").IsNotNull();
       Condition.Requires(salt, "salt").IsNotNull();
-      hashAlgorithmName = hashAlgorithmName ?? Configuration.Settings.PasswordHashAlgorithm;
+      hashAlgorithmName = hashAlgorithmName ?? XmlConfiguration.Settings.PasswordHashAlgorithm;
 
       byte[] passwordBytes = System.Text.Encoding.Unicode.GetBytes(password);
 

@@ -12,8 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chimera.Authentication.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chimera.Authentication.Core.Tests", "Chimera.Authentication.Core.Tests\Chimera.Authentication.Core.Tests.csproj", "{38CB101B-9EFD-45AB-BBE3-105613A0CCE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chimera.Authentication.Web", "Chimera.Authentication.Web\Chimera.Authentication.Web.csproj", "{CE930E46-84AF-4EA0-9084-E309CF9B3495}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Agres", "Xyperico\Xyperico.Agres\Xyperico.Agres\Xyperico.Agres.csproj", "{F7D3C1F6-7F4E-4DF5-9226-5AEC4180C74F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Base", "Xyperico\Xyperico.Base\Xyperico.Base\Xyperico.Base.csproj", "{054A30BA-B232-4FF1-9F23-1040D075764A}"
@@ -45,9 +43,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{1FC661AC-A811-45AA-9BFC-49942E95DED6}"
 	ProjectSection(SolutionItems) = preProject
 		Chimera.Authentication.config = Chimera.Authentication.config
+		module.config = module.config
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chimera.Authentication.Contract", "Chimera.Authentication.Contract\Chimera.Authentication.Contract.csproj", "{D3FB315E-956C-42A2-92F1-E2E381D2B565}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chimera.Authentication.Web", "Chimera.Authentication.Web\Chimera.Authentication.Web.csproj", "{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,16 +80,6 @@ Global
 		{38CB101B-9EFD-45AB-BBE3-105613A0CCE6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{38CB101B-9EFD-45AB-BBE3-105613A0CCE6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{38CB101B-9EFD-45AB-BBE3-105613A0CCE6}.Release|x86.ActiveCfg = Release|Any CPU
-		{CE930E46-84AF-4EA0-9084-E309CF9B3495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE930E46-84AF-4EA0-9084-E309CF9B3495}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE930E46-84AF-4EA0-9084-E309CF9B3495}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{CE930E46-84AF-4EA0-9084-E309CF9B3495}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{CE930E46-84AF-4EA0-9084-E309CF9B3495}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CE930E46-84AF-4EA0-9084-E309CF9B3495}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE930E46-84AF-4EA0-9084-E309CF9B3495}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE930E46-84AF-4EA0-9084-E309CF9B3495}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{CE930E46-84AF-4EA0-9084-E309CF9B3495}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{CE930E46-84AF-4EA0-9084-E309CF9B3495}.Release|x86.ActiveCfg = Release|Any CPU
 		{F7D3C1F6-7F4E-4DF5-9226-5AEC4180C74F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F7D3C1F6-7F4E-4DF5-9226-5AEC4180C74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7D3C1F6-7F4E-4DF5-9226-5AEC4180C74F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -219,6 +210,16 @@ Global
 		{D3FB315E-956C-42A2-92F1-E2E381D2B565}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D3FB315E-956C-42A2-92F1-E2E381D2B565}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D3FB315E-956C-42A2-92F1-E2E381D2B565}.Release|x86.ActiveCfg = Release|Any CPU
+		{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5BD9C781-1C4E-46BA-8B41-35C48F0D45D3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

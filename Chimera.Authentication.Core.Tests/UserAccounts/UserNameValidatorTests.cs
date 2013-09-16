@@ -13,15 +13,15 @@ namespace Chimera.Authentication.Core.Tests.UserAccounts
     protected override void SetUp()
     {
       base.SetUp();
-      OldUserNameMinLength = Configuration.Settings.UserNamePolicy.MinLength;
-      OldUserNameMaxLength = Configuration.Settings.UserNamePolicy.MaxLength;
+      OldUserNameMinLength = XmlConfiguration.Settings.UserNamePolicy.MinLength;
+      OldUserNameMaxLength = XmlConfiguration.Settings.UserNamePolicy.MaxLength;
     }
 
 
     protected override void TearDown()
     {
-      Configuration.Settings.UserNamePolicy.MinLength = OldUserNameMinLength;
-      Configuration.Settings.UserNamePolicy.MaxLength = OldUserNameMaxLength;
+      XmlConfiguration.Settings.UserNamePolicy.MinLength = OldUserNameMinLength;
+      XmlConfiguration.Settings.UserNamePolicy.MaxLength = OldUserNameMaxLength;
       base.TearDown();
     }
 
@@ -76,8 +76,8 @@ namespace Chimera.Authentication.Core.Tests.UserAccounts
     [Test]
     public void ItRespectsMinAndMaxUserLengthFromConfiguration()
     {
-      Configuration.Settings.UserNamePolicy.MinLength = 10;
-      Configuration.Settings.UserNamePolicy.MaxLength = 13;
+      XmlConfiguration.Settings.UserNamePolicy.MinLength = 10;
+      XmlConfiguration.Settings.UserNamePolicy.MaxLength = 13;
       Assert.IsTrue(UserNameValidator.IsValidUserName("1234567890123"), "Allow 13 characters for user name");
       Assert.IsTrue(UserNameValidator.IsValidUserName("1234567890"), "Allow 10 characters for user name");
       Assert.IsFalse(UserNameValidator.IsValidUserName("123456789"), "Disallow <10 characters for user name");

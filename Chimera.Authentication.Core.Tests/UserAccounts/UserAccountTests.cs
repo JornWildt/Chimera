@@ -87,7 +87,7 @@ namespace Chimera.Authentication.Core.Tests.UserAccounts
       Assert.AreEqual(cmd.EMail, user.Aggregate.State.EMail);
       Assert.IsNotNull(user.Aggregate.State.PasswordSalt);
       Assert.IsNotNull(user.Aggregate.State.PasswordHash);
-      Assert.AreEqual(Configuration.Settings.PasswordHashAlgorithm, user.Aggregate.State.PasswordHashAlgorithm);
+      Assert.AreEqual(XmlConfiguration.Settings.PasswordHashAlgorithm, user.Aggregate.State.PasswordHashAlgorithm);
     }
   }
 }

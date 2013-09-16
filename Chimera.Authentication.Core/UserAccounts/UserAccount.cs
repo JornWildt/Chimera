@@ -70,7 +70,7 @@ namespace Chimera.Authentication.Core.UserAccounts
         if (!passwordPolicy.IsValid(newPassword))
           throw new InvalidPasswordException(passwordPolicy.GetDescription(_.Auth.Password));
 
-        string algorithm = Configuration.Settings.PasswordHashAlgorithm;
+        string algorithm = XmlConfiguration.Settings.PasswordHashAlgorithm;
         byte[] salt, hash;
         GeneratePasswordHash(newPassword, algorithm, out salt, out hash);
 
