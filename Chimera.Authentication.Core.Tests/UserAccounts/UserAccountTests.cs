@@ -1,15 +1,16 @@
-﻿using Chimera.Authentication.Contract.UserAccounts;
+﻿using System;
+using Chimera.Authentication.Contract.UserAccounts;
 using Chimera.Authentication.Contract.UserAccounts.Commands;
+using Chimera.Authentication.Core.Service.UserAccounts;
 using Chimera.Authentication.Core.UserAccounts;
-using Chimera.Authentication.Service.UserAccounts;
+using Chimera.Authentication.Shared;
 using NUnit.Framework;
 using Xyperico.Agres.EventStore;
+using Xyperico.Agres.JsonNet;
 using Xyperico.Agres.ProtoBuf;
 using Xyperico.Agres.Serialization;
 using Xyperico.Agres.SQLite;
 using Xyperico.Base.CommonDomainTypes;
-using System;
-using Xyperico.Agres.JsonNet;
 
 
 namespace Chimera.Authentication.Core.Tests.UserAccounts
@@ -87,7 +88,7 @@ namespace Chimera.Authentication.Core.Tests.UserAccounts
       Assert.AreEqual(cmd.EMail, user.Aggregate.State.EMail);
       Assert.IsNotNull(user.Aggregate.State.PasswordSalt);
       Assert.IsNotNull(user.Aggregate.State.PasswordHash);
-      Assert.AreEqual(XmlConfiguration.Settings.PasswordHashAlgorithm, user.Aggregate.State.PasswordHashAlgorithm);
+      Assert.AreEqual(Configuration.Settings.PasswordHashAlgorithm, user.Aggregate.State.PasswordHashAlgorithm);
     }
   }
 }

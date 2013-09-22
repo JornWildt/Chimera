@@ -1,0 +1,18 @@
+﻿@model Xyperico.Authentication.Web.Areas.Account.Models.LoginModel
+@{
+  ViewBag.Title = @_.Account.Log_in;
+}
+
+<h1>@ViewBag.Title</h1>
+
+@Html.Partial("_UsernamePasswordLogin")
+
+@Html.Action("ExternalLoginList", new { returnUrl = ViewBag.ReturnUrl, Header = @_.Account.LoginWithExternalService })
+
+@section scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section styles {
+  @Html.Stylesheet("Account")
+}

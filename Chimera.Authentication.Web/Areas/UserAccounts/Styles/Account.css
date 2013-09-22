@@ -1,0 +1,44 @@
+﻿#social-login-form .form.inputs li
+{
+  float: left;
+  width: 30%;
+  margin: 0 10px 10px 0;
+}
+
+.external-login-chooser .register
+{
+  width: 50%;
+  margin: 0;
+  float: left;
+  text-align: center;
+}
+
+.external-login-chooser .login
+{
+  width: 50%;
+  margin: 0;
+  float: left;
+  text-align: center;
+}
+
+.validator-status .ok, .validator-status .fail
+{
+  display: block;
+  float: right;
+  width: 200px;
+}
+
+.validator-status .ok
+{
+  color: green;
+}
+
+.validator-status .fail
+{
+  color: red;
+}
+
+#UserNameStatus *
+{
+   vertical-align: middle;
+}

@@ -3,6 +3,8 @@ using System.Linq;
 using Chimera.Authentication.Contract.UserAccounts;
 using Chimera.Authentication.Contract.UserAccounts.Commands;
 using Chimera.Authentication.Contract.UserAccounts.Events;
+using Chimera.Authentication.Shared;
+using Chimera.Authentication.Shared.UserAccounts;
 using CuttingEdge.Conditions;
 using Xyperico.Agres;
 using Xyperico.Agres.EventStore;
@@ -70,7 +72,7 @@ namespace Chimera.Authentication.Core.UserAccounts
         if (!passwordPolicy.IsValid(newPassword))
           throw new InvalidPasswordException(passwordPolicy.GetDescription(_.Auth.Password));
 
-        string algorithm = XmlConfiguration.Settings.PasswordHashAlgorithm;
+        string algorithm = Configuration.Settings.PasswordHashAlgorithm;
         byte[] salt, hash;
         GeneratePasswordHash(newPassword, algorithm, out salt, out hash);
 

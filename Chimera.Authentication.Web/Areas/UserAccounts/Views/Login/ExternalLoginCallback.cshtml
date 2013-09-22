@@ -1,0 +1,53 @@
+﻿@model Xyperico.Authentication.Web.Areas.Account.Models.ExternalLoginCallbackModel
+@using Xyperico.Web.Mvc.Html
+@{
+  ViewBag.Title = _.Account.Welcome;
+}
+
+<h1>@ViewBag.Title</h1>
+
+<p>@Html.Format(_.Account.SuccessfullExternalAuthentication_p2, @Model.ProviderName, @Model.ProviderUserName)</p>
+  
+<div class="external-login-chooser">
+  <div class="register">
+    @using (Html.BeginForm("registerunknownexternal", "registration"))
+    {
+      @Html.AntiForgeryToken()
+      <input type="hidden" name="ExternalLoginData" value="@Model.ExternalLoginData" />
+      <input type="hidden" name="ProviderEMail" value="@Model.ProviderEMail" />
+      <input type="hidden" name="ProviderUserName" value="@Model.ProviderUserName" />
+      <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+      <input type="hidden" name="IsRedirect" value="1" />
+  
+      <p>@Html.Format(_.Account.RegisterExternalLogin_p1, Model.ProviderUserName)</p>
+      <input type="submit" name="IsRegister" value="@_.Account.Register" />
+    }
+  </div>
+</div>
+
+<div class="external-login-chooser">
+  <div class="login">
+    @using (Html.BeginForm("loginunknownexternal", "login"))
+    {
+      @Html.AntiForgeryToken()
+      <input type="hidden" name="ExternalLoginData" value="@Model.ExternalLoginData" />
+      <input type="hidden" name="ProviderEMail" value="@Model.ProviderEMail" />
+      <input type="hidden" name="ProviderUserName" value="@Model.ProviderUserName" />
+      <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+      <input type="hidden" name="IsRedirect" value="1" />
+  
+      <p>@Html.Format(_.Account.LoginWithExternalLogin_p1, Model.ProviderUserName)</p>
+      <input type="submit" name="IsLogin" value="@_.Account.Log_in" />
+    }
+  </div>
+</div>
+
+<div style="clear: both" />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section styles {
+  @Html.Stylesheet("Account")
+}

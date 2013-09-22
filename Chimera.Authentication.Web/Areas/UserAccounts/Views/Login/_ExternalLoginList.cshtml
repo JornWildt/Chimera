@@ -1,0 +1,22 @@
+﻿@model Xyperico.Authentication.Web.Areas.Account.Models.ExternalLoginListModel
+
+@if (Model.Clients.Count > 0)
+{
+  <section id="social-login-form">
+  <h3>@Model.Header</h3>
+  @using (Html.BeginForm("ExternalLogin", "Login", new { ReturnUrl = ViewBag.ReturnUrl }))
+  {
+    @Html.AntiForgeryToken()
+    <ol class="form inputs">
+    @foreach (AuthenticationClientData p in Model.Clients)
+    {
+      <li>
+        <button type="submit" name="provider" value="@p.AuthenticationClient.ProviderName" title="Log in using your @p.DisplayName account">@p.DisplayName</button>
+      </li>
+    }
+    </ol>
+  }
+  </section>
+  <br style="clear:both" />
+}
+

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
+using Chimera.Authentication.Shared;
 using CuttingEdge.Conditions;
 
 
@@ -11,7 +12,7 @@ namespace Chimera.Authentication.Core.UserAccounts
     {
       Condition.Requires(password, "password").IsNotNull();
       Condition.Requires(salt, "salt").IsNotNull();
-      hashAlgorithmName = hashAlgorithmName ?? XmlConfiguration.Settings.PasswordHashAlgorithm;
+      hashAlgorithmName = hashAlgorithmName ?? Configuration.Settings.PasswordHashAlgorithm;
 
       byte[] passwordBytes = System.Text.Encoding.Unicode.GetBytes(password);
 

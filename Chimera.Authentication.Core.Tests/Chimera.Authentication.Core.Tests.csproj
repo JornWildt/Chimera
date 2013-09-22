@@ -59,13 +59,17 @@
       <Project>{D3FB315E-956C-42A2-92F1-E2E381D2B565}</Project>
       <Name>Chimera.Authentication.Contract</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Chimera.Authentication.Core.Service\Chimera.Authentication.Core.Service.csproj">
+      <Project>{830C51E1-E064-46C1-BB25-E60DAB7BE42B}</Project>
+      <Name>Chimera.Authentication.Core.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Chimera.Authentication.Core\Chimera.Authentication.Core.csproj">
       <Project>{883403DD-D5FF-46E1-8292-01B7002DF8E5}</Project>
       <Name>Chimera.Authentication.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Chimera.Authentication.Service\Chimera.Authentication.Service.csproj">
-      <Project>{FFD7CBF6-16D8-40AE-8091-6108BD82C4E0}</Project>
-      <Name>Chimera.Authentication.Service</Name>
+    <ProjectReference Include="..\Chimera.Authentication.Shared\Chimera.Authentication.Shared.csproj">
+      <Project>{E76B1C3A-ED7A-445A-81F4-A4B3A4F3066B}</Project>
+      <Name>Chimera.Authentication.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xyperico\Xyperico.Agres\Xyperico.Agres.JsonNet\Xyperico.Agres.JsonNet.csproj">
       <Project>{0A736229-1204-4F4B-87EC-6D44E811D75B}</Project>

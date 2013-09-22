@@ -49,26 +49,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationStarter.cs" />
-    <Compile Include="Resources\Auth.da1.Designer.cs">
+    <Compile Include="Resources\AuthCore.da.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Auth.da.resx</DependentUpon>
+      <DependentUpon>AuthCore.da.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Auth.Designer.cs">
+    <Compile Include="Resources\AuthCore.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Auth.resx</DependentUpon>
+      <DependentUpon>AuthCore.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserAccounts\ConfigurationElements\PasswordPolicyElement.cs" />
-    <Compile Include="UserAccounts\ConfigurationElements\UserNamePolicyElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserAccounts\Configuration.cs" />
     <Compile Include="UserAccounts\FilebasedUserNameValidator.cs" />
     <Compile Include="UserAccounts\InvalidPasswordException.cs" />
     <Compile Include="UserAccounts\InvalidUserNameException.cs" />
     <Compile Include="UserAccounts\IUserNameValidator.cs" />
     <Compile Include="UserAccounts\PasswordHasher.cs" />
-    <Compile Include="UserAccounts\PasswordPolicy.cs" />
     <Compile Include="UserAccounts\UserAccount.cs" />
     <Compile Include="UserAccounts\UserAccountState.cs" />
   </ItemGroup>
@@ -76,6 +72,10 @@
     <ProjectReference Include="..\Chimera.Authentication.Contract\Chimera.Authentication.Contract.csproj">
       <Project>{D3FB315E-956C-42A2-92F1-E2E381D2B565}</Project>
       <Name>Chimera.Authentication.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Chimera.Authentication.Shared\Chimera.Authentication.Shared.csproj">
+      <Project>{E76B1C3A-ED7A-445A-81F4-A4B3A4F3066B}</Project>
+      <Name>Chimera.Authentication.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xyperico\Xyperico.Agres\Xyperico.Agres.ProtoBuf\Xyperico.Agres.ProtoBuf.csproj">
       <Project>{D150EABC-E736-4BD1-9FC1-CB6F607E000E}</Project>
@@ -91,14 +91,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Auth.da.resx">
+    <EmbeddedResource Include="Resources\AuthCore.da.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Auth.da1.Designer.cs</LastGenOutput>
+      <LastGenOutput>AuthCore.da.Designer.cs</LastGenOutput>
       <CustomToolNamespace>_</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Auth.resx">
+    <EmbeddedResource Include="Resources\AuthCore.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Auth.Designer.cs</LastGenOutput>
+      <LastGenOutput>AuthCore.Designer.cs</LastGenOutput>
       <CustomToolNamespace>_</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>

@@ -1,0 +1,20 @@
+﻿@model Chimera.Authentication.Views.UserAccounts.UserAccountView
+@using Xyperico.Web.Mvc
+<div id="account-box">
+@if (User.Identity.IsAuthenticated)
+{
+  using (Html.BeginForm("logout", "login", new { area = "account" }))
+  {
+    <span>@Html.Format(_.AuthWeb.Welcome_p0, Model.UserName)</span>
+    @Html.AntiForgeryToken()
+    <input type="submit" value="@_.AuthWeb.Log_out" />
+  }
+}
+else
+{
+  <text>
+  @Html.ActionLink(_.AuthWeb.Log_in, "show", "login", new { area = "account" }, null)
+  | @Html.ActionLink(_.AuthWeb.Register, "register", "registration")
+  </text>
+}
+</div>

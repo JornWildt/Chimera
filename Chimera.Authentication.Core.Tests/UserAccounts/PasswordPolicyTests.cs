@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
-using System.Globalization;
-using Chimera.Authentication.Core.UserAccounts;
+﻿using System.Globalization;
+using Chimera.Authentication.Shared.UserAccounts;
+using NUnit.Framework;
 
 
 namespace Chimera.Authentication.Core.Tests.UserAccounts

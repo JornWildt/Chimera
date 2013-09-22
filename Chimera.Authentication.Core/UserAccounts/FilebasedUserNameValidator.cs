@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using Chimera.Authentication.Shared;
 using Xyperico.Base.IO;
 
 
@@ -20,8 +21,8 @@ namespace Chimera.Authentication.Core.UserAccounts
 
     static FilebasedUserNameValidator()
     {
-      if (!string.IsNullOrEmpty(XmlConfiguration.Settings.UserNamePolicy.ValidUserNamePattern))
-        ValidUserNamePattern = new Regex(XmlConfiguration.Settings.UserNamePolicy.ValidUserNamePattern);
+      if (!string.IsNullOrEmpty(Configuration.Settings.UserNamePolicy.ValidUserNamePattern))
+        ValidUserNamePattern = new Regex(Configuration.Settings.UserNamePolicy.ValidUserNamePattern);
       else
         ValidUserNamePattern = new Regex("^[a-zA-Z0-9]+[a-zA-Z0-9-_.]*$");
     }
@@ -31,7 +32,7 @@ namespace Chimera.Authentication.Core.UserAccounts
     {
       if (userName == null)
         return false;
-      if (userName.Length < XmlConfiguration.Settings.UserNamePolicy.MinLength || userName.Length > XmlConfiguration.Settings.UserNamePolicy.MaxLength)
+      if (userName.Length < Configuration.Settings.UserNamePolicy.MinLength || userName.Length > Configuration.Settings.UserNamePolicy.MaxLength)
         return false;
 
       if (!ValidUserNamePattern.IsMatch(userName))
@@ -51,7 +52,7 @@ namespace Chimera.Authentication.Core.UserAccounts
 
     private void ReadInvalidUserNames()
     {
-      string filename = XmlConfiguration.Settings.UserNamePolicy.InvalidUserNameFile;
+      string filename = Configuration.Settings.UserNamePolicy.InvalidUserNameFile;
       if (string.IsNullOrEmpty(filename))
         return;
       filename = FileUtils.MapRelPathToBaseDir(filename);

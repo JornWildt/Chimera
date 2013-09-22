@@ -1,0 +1,60 @@
+﻿@model Chimera.Authentication.Web.Areas.UserAccounts.Models.RegisterUnknownExternalModel
+@using Xyperico.Web.Mvc.Html
+@using Chimera.Authentication.Web.Html
+@{
+  ViewBag.Title = _.AuthWeb.Registration;
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<p>@Html.Format(_.AuthWeb.RegisterUnknownExternal_p2, @Model.ProviderName, @Model.ProviderUserName)</p>
+  
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+  @Html.ValidationSummary()
+  <input type="hidden" name="ProviderName" value="@Model.ProviderName" />
+  <input type="hidden" name="ProviderUserName" value="@Model.ProviderUserName" />
+  <input type="hidden" name="ExternalLoginData" value="@Model.ExternalLoginData" />
+  <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+
+  <fieldset>
+    <legend>@_.AuthWeb.CreateNewAccount</legend>
+    <ol class="form inputs">
+      <li>
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName)
+        @Html.UserNameValidatorFor(m => m.UserName)
+      </li>
+      <li>
+        @Html.LabelFor(m => m.EMail)
+        @Html.TextBoxFor(m => m.EMail)
+        @Html.EMailValidatorFor(m => m.EMail)
+      </li>
+      <li>
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+      </li>
+      <li>
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @Html.PasswordFor(m => m.ConfirmPassword)
+      </li>
+    </ol>
+    <ol class="form buttons">
+      <li><input type="submit" name="IsRegister" value="@_.AuthWeb.Register" /></li>
+    </ol>
+  </fieldset>
+}
+@Html.AutoFocusFor(m => m.UserName)
+
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/Areas/Account/Scripts/account.js")
+}
+
+@section styles {
+  @Html.Stylesheet("Account")
+}

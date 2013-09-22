@@ -1,0 +1,57 @@
+﻿@model Chimera.Authentication.Web.Areas.UserAccounts.Models.RegisterModel
+@using Xyperico.Web.Mvc.Html
+@using Chimera.Authentication.Web.Html
+@{
+  ViewBag.Title = _.AuthWeb.Registration;
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+    <h2>@_.AuthWeb.CreateNewAccount</h2>
+</hgroup>
+
+@using (Html.BeginForm("register", "registration", FormMethod.Post, new { id = "registerForm" }))
+{
+  @Html.AntiForgeryToken()
+  @Html.ValidationSummary()
+
+  <fieldset>
+    <ol class="form inputs">
+      <li>
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName)
+        @Html.UserNameValidatorFor(m => m.UserName)
+      </li>
+      <li>
+        @Html.LabelFor(m => m.EMail)
+        @Html.TextBoxFor(m => m.EMail)
+        @Html.EMailValidatorFor(m => m.EMail)
+      </li>
+      <li>
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)<br />
+        @Html.ValidationMessageFor(m => m.Password)
+      </li>
+      <li>
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "required" })
+      </li>
+    </ol>
+    <ol class="form buttons">
+      <li><input type="submit" value="@_.AuthWeb.Register" /></li>
+    </ol>
+  </fieldset>
+}
+
+@Html.Action("ExternalLoginList", "Login", new { Header = @_.AuthWeb.RegisterWithExternalService })
+
+@Html.AutoFocusFor(m => m.UserName)
+
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/Areas/Account/Scripts/account.js")
+}
+
+@section styles {
+  @Html.Stylesheet("Account")
+}

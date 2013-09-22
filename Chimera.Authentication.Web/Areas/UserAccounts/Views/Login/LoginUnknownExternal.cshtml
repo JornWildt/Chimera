@@ -1,0 +1,38 @@
+﻿@model Xyperico.Authentication.Web.Areas.Account.Models.LoginUnknownExternalModel
+@using Xyperico.Web.Mvc.Html
+@{
+  ViewBag.Title = @_.Account.Log_in;
+}
+
+<h1>@ViewBag.Title</h1>
+
+<p>@Html.Format(_.Account.LoginUnknownExternal_p2, @Model.ProviderName, @Model.ProviderUserName)</p>
+
+<section id="login-form">
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+  @Html.ValidationSummary()
+  <input type="hidden" name="ExternalLoginData" value="@Model.ExternalLoginData" />
+  <input type="hidden" name="ProviderEMail" value="@Model.ProviderEMail" />
+  <input type="hidden" name="ProviderUserName" value="@Model.ProviderUserName" />
+  <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+
+  <fieldset>
+    <ol class="form inputs">
+      <li>
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName)
+      </li>
+      <li>
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+      </li>
+    </ol>
+    <ol class="form buttons">
+      <li><input type="submit" value="@_.Account.Log_in" /></li>
+    </ol>
+  </fieldset>
+}
+</section>
+@Html.AutoFocusFor(m => m.UserName)

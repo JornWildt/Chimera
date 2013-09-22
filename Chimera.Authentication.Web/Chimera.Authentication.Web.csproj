@@ -37,7 +37,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetOpenAuth.AspNet">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.4.12182\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.4.12182\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.4.12182\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.4.12182\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.4.12182\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.4.12182\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.30506.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -104,18 +128,42 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.30506.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
+    <Compile Include="Areas\UserAccounts\Controllers\RegistrationController.cs" />
+    <Compile Include="Areas\UserAccounts\Models\ExternalLoginBaseData.cs" />
+    <Compile Include="Areas\UserAccounts\Models\RegisterModel.cs" />
+    <Compile Include="Areas\UserAccounts\Models\RegisterUnknownExternalModel.cs" />
+    <Compile Include="Areas\UserAccounts\UserAccountsAreaRegistration.cs" />
+    <Compile Include="Areas\UserAccounts\Controllers\InfoController.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Html\InputValidatorHtmlHelper.cs" />
+    <Compile Include="Html\PasswordStrengthHtmlHelper.cs" />
+    <Compile Include="PasswordValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AuthWeb.da.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthWeb.da.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\AuthWeb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthWeb.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="Global.asax" />
+    <Content Include="Areas\UserAccounts\Scripts\account.js" />
+    <Content Include="Areas\UserAccounts\Styles\Account.css" />
+    <Content Include="Areas\UserAccounts\Styles\spinner.gif" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -123,15 +171,64 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+    <Content Include="Areas\UserAccounts\Views\Info\_AccountBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\UserAccounts\Scripts\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\UserAccounts\Styles\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\UserAccounts\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Chimera.Authentication.Core\Chimera.Authentication.Core.csproj">
+      <Project>{883403DD-D5FF-46E1-8292-01B7002DF8E5}</Project>
+      <Name>Chimera.Authentication.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Chimera.Authentication.Shared\Chimera.Authentication.Shared.csproj">
+      <Project>{E76B1C3A-ED7A-445A-81F4-A4B3A4F3066B}</Project>
+      <Name>Chimera.Authentication.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Chimera.Authentication.Views.MongoDB\Chimera.Authentication.Views.MongoDB.csproj">
+      <Project>{AC72003E-9D29-4255-8226-805589933940}</Project>
+      <Name>Chimera.Authentication.Views.MongoDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Chimera.Authentication.Views\Chimera.Authentication.Views.csproj">
+      <Project>{0BC0772C-B16D-43E3-A002-2922F3A95C76}</Project>
+      <Name>Chimera.Authentication.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xyperico\Xyperico.Base\Xyperico.Base\Xyperico.Base.csproj">
+      <Project>{054A30BA-B232-4FF1-9F23-1040D075764A}</Project>
+      <Name>Xyperico.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xyperico\Xyperico.Web\Xyperico.Web.Mvc\Xyperico.Web.Mvc.csproj">
+      <Project>{5BAC1705-410B-4B27-AA97-03C1EF567E1A}</Project>
+      <Name>Xyperico.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AuthWeb.da.resx">
+      <CustomToolNamespace>_</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthWeb.da.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AuthWeb.resx">
+      <CustomToolNamespace>_</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthWeb.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\UserAccounts\Views\Registration\Register.cshtml" />
+    <Content Include="Areas\UserAccounts\Views\Registration\RegisterUnknownExternal.cshtml" />
+    <None Include="copyfiles.bat" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -163,6 +260,10 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>cd $(projectDir)
+copyfiles.bat</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
